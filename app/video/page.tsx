@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import AnimatedSection from '@/components/AnimatedSection'
 
 const videos = [
   {
@@ -18,33 +19,36 @@ const videos = [
     desc: 'Wawancara eksklusif dengan ketua yayasan Omah Gembira.',
   },
   {
-    title: 'Program Rumah Singgah',
-    desc: 'Sekilas tentang fasilitas rumah singgah Omah Gembira.',
+    title: 'Program EDU.INC',
+    desc: 'Sekilas tentang program pendidikan inklusif Omah Gembira.',
   },
   {
-    title: 'Workshop Seni Inklusif',
-    desc: 'Workshop seni dan kreativitas yang melibatkan seluruh anggota.',
+    title: 'Workshop KRIYA GEMBIRA',
+    desc: 'Workshop seni dan kreativitas karya penyandang disabilitas.',
   },
+]
+
+const cardColors = [
+  'bg-green-bg border-green/20',
+  'bg-blue-bg border-blue/20',
+  'bg-gold-bg border-gold/20',
+  'bg-rose-bg border-rose/20',
 ]
 
 export default function VideoPage() {
   return (
     <>
-      <section className="min-h-[40vh] flex items-center pt-16 bg-gradient-to-b from-background via-primary/5 to-background">
+      <section className="min-h-[40vh] flex items-center pt-16 bg-rose-bg">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
           <div className="max-w-2xl animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface/80 text-rose-dark text-sm font-medium mb-6">
               Video
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground leading-tight">
-              Video{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                Dokumentasi
-              </span>
+              Video Dokumentasi
             </h1>
             <p className="text-lg text-foreground/60 mt-4 leading-relaxed">
-              Saksikan keseruan dan kebersamaan dalam setiap kegiatan Omah Gembira 
-              melalui video-video berikut.
+              Saksikan keseruan dan kebersamaan dalam setiap kegiatan Omah Gembira.
             </p>
           </div>
         </div>
@@ -56,25 +60,20 @@ export default function VideoPage() {
             {videos.map((video, i) => (
               <div
                 key={i}
-                className="group rounded-2xl overflow-hidden border border-primary/5 bg-white hover:shadow-lg hover:shadow-primary/10 transition-all"
+                className={`group rounded-2xl overflow-hidden border ${cardColors[i % 4]} bg-white`}
               >
-                <div className="aspect-video bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 flex items-center justify-center relative">
-                  <div className="w-16 h-16 rounded-full bg-white/80 group-hover:bg-white transition-colors flex items-center justify-center shadow-lg">
-                    <svg className="w-7 h-7 text-primary ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                <div className="aspect-video bg-charcoal flex items-center justify-center relative">
+                  <div className="w-16 h-16 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors flex items-center justify-center">
+                    <svg className="w-7 h-7 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
                   <div className="absolute bottom-3 right-3 px-2 py-1 rounded bg-black/50 text-white text-xs">
-                  0{i + 2}:{String((i + 1) * 15).padStart(2, '0')}
+                    0{i + 2}:{String((i + 1) * 15).padStart(2, '0')}
                   </div>
-                  <p className="absolute text-foreground/30 text-xs top-3 left-3 bg-white/60 px-2 py-0.5 rounded">
-                    placeholder
-                  </p>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {video.title}
-                  </h3>
+                  <h3 className="font-semibold text-foreground">{video.title}</h3>
                   <p className="text-sm text-foreground/50 mt-1">{video.desc}</p>
                 </div>
               </div>
@@ -83,24 +82,24 @@ export default function VideoPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-b from-background via-secondary/5 to-background text-center">
+      <section className="py-16 bg-gold-bg text-center">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-            Subscribe Channel YouTube Kami
+            Ikuti Media Sosial Kami
           </h2>
           <p className="text-foreground/60 max-w-lg mx-auto mb-8">
-            Dapatkan update video terbaru tentang kegiatan dan program Omah Gembira.
+            Dapatkan update terbaru tentang kegiatan dan program Omah Gembira.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-red-500 text-white font-semibold hover:bg-red-600 transition-all shadow-lg shadow-red-500/25">
+            <a href="https://instagram.com/omahgembira" target="_blank" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-charcoal text-white font-semibold hover:opacity-90 transition-all">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
               </svg>
-              YouTube Omah Gembira
+              @omahgembira
             </a>
             <Link
               href="/galeri"
-              className="inline-flex px-6 py-3 rounded-full border-2 border-primary/30 text-foreground font-semibold hover:border-primary hover:bg-primary/5 transition-all"
+              className="inline-flex px-6 py-3 rounded-full border-2 border-foreground/20 text-foreground font-semibold hover:border-foreground/40 transition-all"
             >
               Lihat Galeri Foto
             </Link>
