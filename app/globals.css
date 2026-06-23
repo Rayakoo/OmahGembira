@@ -18,6 +18,9 @@
   --rose: #d15a6b;
   --rose-dark: #b04454;
   --rose-bg: #fadbd8;
+  --red: #e74c3c;
+  --red-dark: #c0392b;
+  --red-bg: #fde8e8;
 }
 
 @theme inline {
@@ -38,6 +41,9 @@
   --color-rose: var(--rose);
   --color-rose-dark: var(--rose-dark);
   --color-rose-bg: var(--rose-bg);
+  --color-red: var(--red);
+  --color-red-dark: var(--red-dark);
+  --color-red-bg: var(--red-bg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

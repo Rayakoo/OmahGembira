@@ -18,7 +18,7 @@ const values = [
   {
     title: 'Inklusivitas',
     desc: 'Semua orang diterima apa adanya tanpa memandang latar belakang atau kondisi.',
-    bg: 'bg-blue-bg',
+    bg: 'bg-surface',
     color: 'text-blue',
   },
   {

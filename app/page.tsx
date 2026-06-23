@@ -95,9 +95,9 @@ const sdgPillars = [
     title: 'Pendidikan Berkualitas',
     sub: 'SDG 4 — Quality Education',
     desc: 'Menyediakan akses pendidikan inklusif agar penyandang disabilitas dapat mengembangkan potensi secara setara.',
-    bg: 'bg-blue-bg',
-    color: 'text-blue',
-    border: 'border-blue/20',
+    bg: 'bg-red-bg',
+    color: 'text-red-dark',
+    border: 'border-red/20',
     delay: 150,
   },
   {
