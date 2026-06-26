@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import AnimatedSection from '@/components/AnimatedSection'
 
 const values = [
@@ -53,20 +54,13 @@ export default function TentangPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <AnimatedSection>
-            <div className="aspect-[4/3] rounded-2xl bg-charcoal overflow-hidden flex flex-col card-hover">
-              <div className="flex-1 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <p className="text-white/50 text-sm">Foto Tim Omah Gembira</p>
-                  <p className="text-white/30 text-xs mt-1">(placeholder)</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-5 gap-0 h-2">
-                <div className="bg-green" />
-                <div className="bg-blue" />
-                <div className="bg-surface" />
-                <div className="bg-gold" />
-                <div className="bg-rose" />
-              </div>
+            <div className="aspect-[4/3] rounded-2xl bg-charcoal overflow-hidden card-hover relative">
+              <Image
+                src="/omah_gembira1.jpg"
+                alt="Foto Tim Omah Gembira"
+                fill
+                className="object-cover"
+              />
             </div>
             </AnimatedSection>
 
@@ -100,89 +94,146 @@ export default function TentangPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-green-bg">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-green-bg relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-20 right-0 w-72 h-72 rounded-full bg-green/10 blur-3xl" />
+          <div className="absolute bottom-0 left-10 w-64 h-64 rounded-full bg-blue/5 blur-3xl" />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-              Visi & Misi
-            </h2>
-            <p className="text-foreground/60 mt-3">
-              Berlandaskan Tujuan Pembangunan Berkelanjutan (SDGs).
-            </p>
-          </div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface/80 text-green text-sm font-medium mb-4">
+                Visi & Misi
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                Arah & Tujuan Kami
+              </h2>
+              <p className="text-foreground/60 mt-3">
+                Berlandaskan Tujuan Pembangunan Berkelanjutan (SDGs).
+              </p>
+            </div>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-8">
-            <AnimatedSection>
-            <div className="p-8 rounded-2xl bg-surface card-hover">
-              <h3 className="text-xl font-bold text-green mb-4">Visi</h3>
-              <p className="text-foreground/60 leading-relaxed">
+
+          <AnimatedSection delay={100}>
+            <div className="p-10 rounded-2xl bg-surface border border-green/10 text-center mb-10 relative">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-green flex items-center justify-center shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+              <span className="inline-block px-4 py-1 rounded-full bg-green-bg text-green text-sm font-bold tracking-wider uppercase mb-4 mt-2">
+                Visi
+              </span>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground leading-relaxed max-w-2xl mx-auto">
                 Mewujudkan lingkungan inklusif yang mendukung edukasi, pendampingan, dan
                 pemberdayaan penyandang disabilitas serta keluarga disabilitas.
               </p>
             </div>
-            </AnimatedSection>
-            <AnimatedSection delay={150}>
-            <div className="p-8 rounded-2xl bg-surface card-hover">
-              <h3 className="text-xl font-bold text-blue mb-4">Misi</h3>
-              <ul className="space-y-3 text-foreground/60">
-                <li className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded-full bg-green-bg flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-green text-xs font-bold">3</span>
-                  </span>
-                  <span><strong>Kesejahteraan (Well-being &mdash; SDG 3):</strong> Meningkatkan kualitas hidup penyandang disabilitas dan keluarga mereka melalui program pendampingan psikososial dan kesehatan.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded-full bg-blue-bg flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-blue text-xs font-bold">4</span>
-                  </span>
-                  <span><strong>Pendidikan Berkualitas (Quality Education &mdash; SDG 4):</strong> Menyediakan akses pendidikan inklusif dan berkualitas untuk penyandang disabilitas, sehingga mereka dapat mengembangkan potensi dan keterampilan yang setara dengan individu lain.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded-full bg-gold-bg flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-gold-dark text-xs font-bold">8</span>
-                  </span>
-                  <span><strong>Pertumbuhan Ekonomi (Economic Growth &mdash; SDG 8):</strong> Memberdayakan penyandang disabilitas secara ekonomi melalui kewirausahaan sosial dan peluang kerja yang inklusif.</span>
-                </li>
-              </ul>
+          </AnimatedSection>
+
+          <AnimatedSection delay={200}>
+            <div className="p-10 rounded-2xl bg-surface border border-blue/10">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="px-4 py-1 rounded-full bg-blue-bg text-blue text-sm font-bold tracking-wider uppercase">
+                  Misi
+                </span>
+              </div>
+              <div className="grid gap-5">
+                {[
+                  { num: '3', sdg: 'Kesejahteraan (Well-being)', detail: 'Meningkatkan kualitas hidup penyandang disabilitas dan keluarga mereka melalui program pendampingan psikososial dan kesehatan.', color: 'text-green', bg: 'bg-green-bg', border: 'border-green/20' },
+                  { num: '4', sdg: 'Pendidikan Berkualitas (Quality Education)', detail: 'Menyediakan akses pendidikan inklusif dan berkualitas untuk penyandang disabilitas, sehingga mereka dapat mengembangkan potensi dan keterampilan yang setara dengan individu lain.', color: 'text-blue', bg: 'bg-blue-bg', border: 'border-blue/20' },
+                  { num: '8', sdg: 'Pertumbuhan Ekonomi (Economic Growth)', detail: 'Memberdayakan penyandang disabilitas secara ekonomi melalui kewirausahaan sosial dan peluang kerja yang inklusif.', color: 'text-gold-dark', bg: 'bg-gold-bg', border: 'border-gold/20' },
+                ].map((m) => (
+                  <div key={m.num} className={`flex gap-4 p-5 rounded-xl ${m.bg} border ${m.border}`}>
+                    <div className="shrink-0 w-12 h-12 rounded-full bg-surface flex items-center justify-center">
+                      <span className={`text-lg font-black ${m.color}`}>{m.num}</span>
+                    </div>
+                    <div>
+                      <h4 className={`font-bold ${m.color} mb-1`}>SDG {m.num} — {m.sdg}</h4>
+                      <p className="text-sm text-foreground/60 leading-relaxed">{m.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            </AnimatedSection>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      <section className="py-16 bg-surface">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-surface relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-10 w-80 h-80 rounded-full bg-green/5 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-gold/5 blur-3xl" />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-              Struktur Organisasi
-            </h2>
-            <p className="text-foreground/60 mt-3">
-              Susunan pengurus Yayasan Omah Gembira.
-            </p>
-          </div>
+            <div className="text-center mb-14">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-bg text-green text-sm font-medium mb-4">
+                Struktur Organisasi
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                Pengurus Yayasan
+              </h2>
+              <p className="text-foreground/60 mt-3">
+                Susunan pengurus Yayasan Omah Gembira periode 2024.
+              </p>
+            </div>
           </AnimatedSection>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
+
+          <div className="space-y-4">
             {[
-              { role: 'Penasihat', members: ['Ely Estiningtyas'], color: 'bg-green-bg border-green/20', textColor: 'text-green', index: 1 },
-              { role: 'Pembina', members: ['Titing Rara W'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', index: 2 },
-              { role: 'Ketua', members: ['Riza Agung P'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', index: 3 },
-              { role: 'Sekretaris', members: ['Hanna Haidaroh'], color: 'bg-rose-bg border-rose/20', textColor: 'text-rose-dark', index: 4 },
-              { role: 'Bendahara', members: ['Cehra'], color: 'bg-green-bg border-green/20', textColor: 'text-green', index: 5 },
-              { role: 'PSDM', members: ['Widya (CO)', 'Putri', 'Jeje'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', index: 6 },
-              { role: 'PUSMEDINFO', members: ['New (CO)'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', index: 7 },
-              { role: 'Humas', members: ['New (CO)', 'Nani'], color: 'bg-rose-bg border-rose/20', textColor: 'text-rose-dark', index: 8 },
-              { role: 'Disability Care', members: ['Marwa (CO)', 'Nilam', 'Naila', 'Tata'], color: 'bg-green-bg border-green/20', textColor: 'text-green', index: 9 },
-              { role: 'EDU.INC', members: ['Abdul (CO)', 'Himmah', 'Aje'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', index: 10 },
-              { role: 'Kriya Gembira', members: ['Chelli (CO)', 'Muthi'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', index: 11 },
+              { role: 'Penasihat', members: ['Ely Estiningtyas'], color: 'bg-green-bg border-green/30', textColor: 'text-green', iconColor: 'bg-green', delay: 0 },
+              { role: 'Pembina', members: ['Titing Rara W'], color: 'bg-blue-bg border-blue/30', textColor: 'text-blue', iconColor: 'bg-blue', delay: 50 },
+              { role: 'Ketua', members: ['Riza Agung P'], color: 'bg-gold-bg border-gold/30', textColor: 'text-gold-dark', iconColor: 'bg-gold', delay: 100 },
+              { role: 'Sekretaris', members: ['Hanna Haidaroh'], color: 'bg-rose-bg border-rose/30', textColor: 'text-rose-dark', iconColor: 'bg-rose', delay: 150 },
+              { role: 'Bendahara', members: ['Cehra'], color: 'bg-green-bg border-green/30', textColor: 'text-green', iconColor: 'bg-green', delay: 200 },
             ].map((item) => (
-              <AnimatedSection key={item.role} delay={item.index * 50}>
-                <div className={`p-5 rounded-xl border ${item.color} h-full`}>
-                  <h4 className={`text-sm font-bold mb-2 ${item.textColor}`}>{item.role}</h4>
-                  <ul className="space-y-0.5">
+              <AnimatedSection key={item.role} delay={item.delay}>
+                <div className={`flex items-center gap-6 p-5 rounded-2xl ${item.color} border`}>
+                  <div className={`w-16 h-16 rounded-full ${item.iconColor} flex items-center justify-center shrink-0 shadow-md`}>
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className={`text-xs font-bold uppercase tracking-widest ${item.textColor}/70 mb-1`}>{item.role}</p>
+                    <p className="text-xl font-extrabold text-foreground">{item.members[0]}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { role: 'PSDM', members: ['Widya (CO)', 'Putri', 'Jeje'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', iconColor: 'bg-blue', delay: 250 },
+              { role: 'PUSMEDINFO', members: ['New (CO)'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', iconColor: 'bg-gold', delay: 300 },
+              { role: 'Humas', members: ['New (CO)', 'Nani'], color: 'bg-rose-bg border-rose/20', textColor: 'text-rose-dark', iconColor: 'bg-rose', delay: 350 },
+              { role: 'Disability Care', members: ['Marwa (CO)', 'Nilam', 'Naila', 'Tata'], color: 'bg-green-bg border-green/20', textColor: 'text-green', iconColor: 'bg-green', delay: 400 },
+              { role: 'EDU.INC', members: ['Abdul (CO)', 'Himmah', 'Aje'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', iconColor: 'bg-blue', delay: 450 },
+              { role: 'Kriya Gembira', members: ['Chelli (CO)', 'Muthi'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', iconColor: 'bg-gold', delay: 500 },
+            ].map((item) => (
+              <AnimatedSection key={item.role} delay={item.delay}>
+                <div className={`p-6 rounded-2xl ${item.color} border h-full`}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-10 h-10 rounded-full ${item.iconColor} flex items-center justify-center shrink-0`}>
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <h4 className={`text-sm font-extrabold uppercase tracking-wide ${item.textColor}`}>{item.role}</h4>
+                  </div>
+                  <ul className="space-y-2">
                     {item.members.map((m) => (
-                      <li key={m} className="text-sm text-foreground/70">{m}</li>
+                      <li key={m} className="flex items-center gap-2 text-foreground/80 font-semibold text-sm">
+                        <div className="w-7 h-7 rounded-full bg-surface/60 flex items-center justify-center shrink-0">
+                          <svg className="w-4 h-4 text-foreground/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                        </div>
+                        {m}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -279,6 +330,31 @@ export default function TentangPage() {
             disabilitas, serta bekerja sama dengan SLB dan pendamping penyandang disabilitas
             Kementerian Sosial Malang.
           </p>
+        </div>
+      </section>
+
+      <section className="py-16 bg-surface">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              Daftar Mitra / Partner
+            </h2>
+            <p className="text-foreground/60 max-w-lg mx-auto">
+              Bersama mitra kami membangun ekosistem inklusif yang berkelanjutan.
+            </p>
+          </AnimatedSection>
+          <AnimatedSection delay={100}>
+            <ul className="mt-8 space-y-3 max-w-sm mx-auto">
+              {['Kopi Cinta', 'Sarapan Pagi Harmoni', 'Happy Dough and Bakery'].map((partner, i) => (
+                <li
+                  key={partner}
+                  className="p-4 rounded-xl bg-green-bg border border-green/20 text-foreground font-medium"
+                >
+                  {partner}
+                </li>
+              ))}
+            </ul>
+          </AnimatedSection>
         </div>
       </section>
 

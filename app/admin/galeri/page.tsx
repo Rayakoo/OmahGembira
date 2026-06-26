@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Trash2 } from "lucide-react";
 import { getGalleries, deleteGallery, type Gallery } from "@/services/galleries";
+import { toDirectImageUrl } from "@/lib/toDirectImageUrl";
 
 export default function AdminGaleriPage() {
   const router = useRouter();
@@ -65,7 +66,7 @@ export default function AdminGaleriPage() {
               className="group relative bg-white rounded-2xl border border-foreground/5 overflow-hidden shadow-sm aspect-[4/3]"
             >
               <img
-                src={g.url}
+                src={toDirectImageUrl(g.url)}
                 alt={g.title || "Galeri"}
                 className="w-full h-full object-cover"
                 onError={(e) => {

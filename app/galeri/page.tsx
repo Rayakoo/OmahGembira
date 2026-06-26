@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getGalleries, type Gallery } from "@/services/galleries";
+import { toDirectImageUrl } from "@/lib/toDirectImageUrl";
 
 const cardColors = [
   "bg-green-bg border-green/20",
@@ -85,7 +86,7 @@ export default function GaleriPage() {
                 >
                   {g.url ? (
                     <img
-                      src={g.url}
+                      src={toDirectImageUrl(g.url)}
                       alt={g.title || `Foto ${i + 1}`}
                       className="w-full h-full object-cover aspect-square"
                       onError={(e) => {
