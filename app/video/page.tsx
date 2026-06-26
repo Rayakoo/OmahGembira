@@ -1,41 +1,36 @@
-import Link from 'next/link'
-import AnimatedSection from '@/components/AnimatedSection'
+"use client";
 
-const videos = [
-  {
-    title: 'Kegiatan Outing Omah Gembira',
-    desc: 'Kebersamaan anggota Omah Gembira saat outing di alam terbuka.',
-  },
-  {
-    title: 'Pelatihan Keterampilan Batch 3',
-    desc: 'Suasana pelatihan keterampilan bagi anggota Omah Gembira.',
-  },
-  {
-    title: 'Perayaan Hari Disabilitas 2025',
-    desc: 'Momen perayaan Hari Disabilitas Internasional bersama komunitas.',
-  },
-  {
-    title: 'Wawancara Ketua Yayasan',
-    desc: 'Wawancara eksklusif dengan ketua yayasan Omah Gembira.',
-  },
-  {
-    title: 'Program EDU.INC',
-    desc: 'Sekilas tentang program pendidikan inklusif Omah Gembira.',
-  },
-  {
-    title: 'Workshop KRIYA GEMBIRA',
-    desc: 'Workshop seni dan kreativitas karya penyandang disabilitas.',
-  },
-]
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import AnimatedSection from "@/components/AnimatedSection";
+import { getVideos, type Video } from "@/services/videos";
 
 const cardColors = [
-  'bg-green-bg border-green/20',
-  'bg-blue-bg border-blue/20',
-  'bg-gold-bg border-gold/20',
-  'bg-rose-bg border-rose/20',
-]
+  "bg-green-bg border-green/20",
+  "bg-blue-bg border-blue/20",
+  "bg-gold-bg border-gold/20",
+  "bg-rose-bg border-rose/20",
+];
+
+function getVideoEmbedUrl(url: string): string {
+  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=0`;
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview?autoplay=0`;
+  return url;
+}
 
 export default function VideoPage() {
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getVideos()
+      .then(setVideos)
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <>
       <section className="min-h-[40vh] flex items-center pt-16 bg-rose-bg">
@@ -56,29 +51,37 @@ export default function VideoPage() {
 
       <section className="py-16 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videos.map((video, i) => (
-              <div
-                key={i}
-                className={`group rounded-2xl overflow-hidden border ${cardColors[i % 4]} bg-white`}
-              >
-                <div className="aspect-video bg-charcoal flex items-center justify-center relative">
-                  <div className="w-16 h-16 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors flex items-center justify-center">
-                    <svg className="w-7 h-7 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="w-8 h-8 border-4 border-green border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : videos.length === 0 ? (
+            <div className="text-center py-20 text-foreground/40">
+              Belum ada video dokumentasi.
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {videos.map((video, i) => (
+                <div
+                  key={video.id}
+                  className={`group rounded-2xl overflow-hidden border ${cardColors[i % 4]} bg-white`}
+                >
+                  <div className="aspect-video bg-charcoal">
+                    <iframe
+                      src={getVideoEmbedUrl(video.url)}
+                      className="w-full h-full"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
                   </div>
-                  <div className="absolute bottom-3 right-3 px-2 py-1 rounded bg-black/50 text-white text-xs">
-                    0{i + 2}:{String((i + 1) * 15).padStart(2, '0')}
+                  <div className="p-5">
+                    <h3 className="font-semibold text-foreground">{video.title}</h3>
+                    <p className="text-sm text-foreground/50 mt-1">{video.description}</p>
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="font-semibold text-foreground">{video.title}</h3>
-                  <p className="text-sm text-foreground/50 mt-1">{video.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -107,5 +110,5 @@ export default function VideoPage() {
         </div>
       </section>
     </>
-  )
+  );
 }

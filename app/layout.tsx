@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import AccessibilityWidget from "@/components/AccessibilityWidget";
+import Providers from "./providers";
+import PublicShell from "./PublicShell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +18,16 @@ export const metadata: Metadata = {
   title: "Omah Gembira | Yayasan Pemerhati Disabilitas",
   description:
     "Omah Gembira adalah yayasan pemerhati disabilitas yang menciptakan ruang aman dan inklusif bagi penyandang disabilitas untuk berkarya, belajar, dan tumbuh bersama.",
+  icons: {
+    icon: "/logo.jpg",
+    apple: "/logo.jpg",
+  },
+  openGraph: {
+    title: "Omah Gembira | Yayasan Pemerhati Disabilitas",
+    description:
+      "Omah Gembira adalah yayasan pemerhati disabilitas yang menciptakan ruang aman dan inklusif bagi penyandang disabilitas untuk berkarya, belajar, dan tumbuh bersama.",
+    images: ["/logo.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -27,15 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="id"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="id" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <AccessibilityWidget />
+        <Providers>
+          <PublicShell>{children}</PublicShell>
+        </Providers>
       </body>
     </html>
   );

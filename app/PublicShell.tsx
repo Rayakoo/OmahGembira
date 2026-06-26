@@ -1,0 +1,22 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
+
+export default function PublicShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin") || pathname === "/login" || pathname === "/register";
+
+  if (isAdmin) return children;
+
+  return (
+    <>
+      <Header />
+      <main className="flex-1">{children}</main>
+      <Footer />
+      <AccessibilityWidget />
+    </>
+  );
+}

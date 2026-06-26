@@ -2,11 +2,12 @@ import Link from 'next/link'
 import AnimatedSection from '@/components/AnimatedSection'
 import CountUp from '@/components/CountUp'
 import Marquee from '@/components/Marquee'
+import HomepagePrograms from '@/components/HomepagePrograms'
 
 const highlights = [
   {
     title: 'Tentang Kami',
-    desc: 'Kenali lebih dekat yayasan, legalitas, visi, misi, dan kontribusi kami.',
+    desc: 'Kenali lebih dekat sejarah, visi, misi, struktur organisasi, dan kontribusi kami.',
     href: '/tentang',
     color: 'bg-green-bg text-green',
     border: 'border-green/20',
@@ -108,36 +109,6 @@ const sdgPillars = [
     bg: 'bg-gold-bg',
     color: 'text-gold-dark',
     border: 'border-gold/20',
-    delay: 300,
-  },
-]
-
-const programs = [
-  {
-    title: 'EDU.INC',
-    subtitle: 'Education Center of Inclusive',
-    desc: 'Program pendidikan bina latih learning to life berbasis family support. Belajar bahasa lewat mendongeng, membedakan warna, hingga bina latih bantu diri.',
-    bg: 'bg-green-bg',
-    color: 'text-green',
-    border: 'border-green/20',
-    delay: 0,
-  },
-  {
-    title: 'DCARE',
-    subtitle: 'Disability Care',
-    desc: 'Program aksi nyata pendampingan dan kepedulian terhadap penyandang disabilitas. Memberikan dukungan psikososial dan akses layanan yang layak.',
-    bg: 'bg-blue-bg',
-    color: 'text-blue',
-    border: 'border-blue/20',
-    delay: 150,
-  },
-  {
-    title: 'KRIYA GEMBIRA',
-    subtitle: 'Ekonomi Kreatif Inklusif',
-    desc: 'Program pemberdayaan ekonomi kreatif melalui kewirausahaan sosial, pelatihan keterampilan, dan pameran karya (open booth).',
-    bg: 'bg-rose-bg',
-    color: 'text-rose-dark',
-    border: 'border-rose/20',
     delay: 300,
   },
 ]
@@ -335,34 +306,11 @@ export default function Home() {
                 Program Kami
               </h2>
               <p className="text-foreground/60 mt-3">
-                Tiga program unggulan yang menjadi pilar kegiatan yayasan.
+                Program unggulan yang menjadi pilar kegiatan yayasan.
               </p>
             </div>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-6">
-            {programs.map((prog) => (
-              <AnimatedSection key={prog.title} delay={prog.delay}>
-                <div className={`p-8 rounded-2xl ${prog.bg} border ${prog.border} card-hover h-full`}>
-                  <h3 className={`text-xl font-bold ${prog.color} mb-1`}>{prog.title}</h3>
-                  <p className="text-sm font-medium text-foreground/50 mb-3">{prog.subtitle}</p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">{prog.desc}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-          <AnimatedSection delay={300}>
-            <div className="text-center mt-10">
-              <Link
-                href="/kegiatan"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-charcoal text-white font-semibold btn-hover"
-              >
-                Lihat Detail Program
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </AnimatedSection>
+          <HomepagePrograms />
         </div>
       </section>
 
@@ -378,15 +326,15 @@ export default function Home() {
               </h2>
               <p className="text-foreground/60 mt-3">
                 Membangun ekosistem inklusif yang kuat di Malang Raya bersama berbagai
-                paguyuban, forum keluarga difabel, dan SLB.
+                paguyuban orang tua penyandang disabilitas, forum keluarga difabel, dan SLB.
               </p>
             </div>
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6 mb-10">
             {[
-              { value: '11', label: 'Forum Keluarga Difabel & Paguyuban', color: 'text-green', delay: 0 },
-              { value: '137', label: 'Peserta Binaan', color: 'text-blue', delay: 150 },
-              { value: '274', label: 'Keluarga Difabel', color: 'text-gold-dark', delay: 300 },
+              { value: '10', label: 'Paguyuban Orang Tua', color: 'text-green', delay: 0 },
+              { value: '350', label: 'Penyandang Disabilitas', color: 'text-blue', delay: 150 },
+              { value: '5', label: 'Kecamatan Jangkauan', color: 'text-gold-dark', delay: 300 },
             ].map((item) => (
               <AnimatedSection key={item.label} delay={item.delay}>
                 <div className="p-8 rounded-2xl bg-surface text-center card-hover">
@@ -400,8 +348,9 @@ export default function Home() {
           </div>
           <AnimatedSection delay={200}>
             <p className="text-center text-foreground/60 text-sm max-w-2xl mx-auto">
-              Jangkauan meliputi Kecamatan Sukun, Kedungkandang, Dau, Singosari, Tajinan,
-              Tumpang, Pakis, dan wilayah lainnya di Malang Raya.
+              Jangkauan meliputi lima kecamatan di Kota dan Kabupaten Malang, bermitra dengan
+              10 paguyuban orang tua penyandang disabilitas, serta didukung pendamping
+              penyandang disabilitas Kementerian Sosial Malang.
             </p>
           </AnimatedSection>
         </div>

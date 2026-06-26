@@ -1,13 +1,6 @@
 import Link from 'next/link'
 import AnimatedSection from '@/components/AnimatedSection'
 
-const stats = [
-  { value: '566+', label: 'Penerima Manfaat', color: 'text-green' },
-  { value: '36', label: 'Pengurus', color: 'text-blue' },
-  { value: '81+', label: 'Relawan / Volunteer', color: 'text-gold-dark' },
-  { value: '42', label: 'Program Kerja', color: 'text-rose-dark' },
-]
-
 const values = [
   {
     title: 'Kasih Sayang',
@@ -79,21 +72,27 @@ export default function TentangPage() {
 
             <AnimatedSection delay={150}>
             <div className="space-y-5">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Tentang Omah Gembira</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Sejarah</h2>
               <p className="text-foreground/60 leading-relaxed">
-                Yayasan Pemerhati Disabilitas Omah Gembira adalah organisasi nirlaba yang
-                berfokus memberikan dampak positif kepada keluarga dan penyandang disabilitas
-                melalui edukasi, pendampingan, serta pemberdayaan.
+                Omah Gembira merupakan komunitas pemerhati dan pemberdaya penyandang
+                disabilitas di Malang Raya yang didirikan pada tahun 2020 oleh sekelompok
+                mahasiswa dan penggiat sosial. Komunitas ini hadir sebagai bentuk kepedulian
+                terhadap keterbatasan ruang kesetaraan bagi penyandang disabilitas, dengan
+                tujuan membangun generasi muda yang berempati, kreatif, inovatif, dan mandiri
+                serta berkontribusi dalam mewujudkan lingkungan yang inklusif.
               </p>
               <p className="text-foreground/60 leading-relaxed">
-                Beroperasi di Malang Raya dengan legalitas Kemenkumham No.
-                AHU-0010900.AH.01.04. Tahun 2024, tanggal 16 Juli 2024. Kami menjalankan
-                program berkelanjutan yang diatur oleh UU No. 8/2016.
+                Omah Gembira sendiri berada di bawah binaan Pendamping Penyandang Disabilitas
+                Kementerian Sosial Malang dan bermitra dengan 10 paguyuban orang tua penyandang
+                disabilitas yang tersebar di lima kecamatan di Kota dan Kabupaten Malang dengan
+                basis sekitar 350 penyandang disabilitas.
               </p>
               <p className="text-foreground/60 leading-relaxed">
-                Melalui tiga program unggulan — EDU.INC, DCARE, dan KRIYA GEMBIRA — kami
-                telah menjangkau 566+ penerima manfaat, didukung 36 pengurus dan 81+ relawan
-                di 11 wilayah Malang Raya.
+                Sebagai fasilitator pemberdayaan, Omah Gembira menyelenggarakan berbagai program
+                yang berfokus pada peningkatan kualitas hidup penyandang disabilitas yang meliputi
+                edukasi masyarakat untuk mengurangi stigma, orientasi relawan, program Duta
+                Inklusif, pelatihan keterampilan, pengembangan kewirausahaan melalui
+                Inspirepreneur, serta berbagai kegiatan pemberdayaan lainnya.
               </p>
             </div>
             </AnimatedSection>
@@ -131,23 +130,64 @@ export default function TentangPage() {
                   <span className="w-5 h-5 rounded-full bg-green-bg flex items-center justify-center shrink-0 mt-0.5">
                     <span className="text-green text-xs font-bold">3</span>
                   </span>
-                  <span><strong>SDG 3 (Kesejahteraan):</strong> Meningkatkan kualitas hidup melalui pendampingan psikososial dan kesehatan.</span>
+                  <span><strong>Kesejahteraan (Well-being &mdash; SDG 3):</strong> Meningkatkan kualitas hidup penyandang disabilitas dan keluarga mereka melalui program pendampingan psikososial dan kesehatan.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-blue-bg flex items-center justify-center shrink-0 mt-0.5">
                     <span className="text-blue text-xs font-bold">4</span>
                   </span>
-                  <span><strong>SDG 4 (Pendidikan):</strong> Menyediakan akses pendidikan inklusif agar mereka mengembangkan potensi secara setara.</span>
+                  <span><strong>Pendidikan Berkualitas (Quality Education &mdash; SDG 4):</strong> Menyediakan akses pendidikan inklusif dan berkualitas untuk penyandang disabilitas, sehingga mereka dapat mengembangkan potensi dan keterampilan yang setara dengan individu lain.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-gold-bg flex items-center justify-center shrink-0 mt-0.5">
                     <span className="text-gold-dark text-xs font-bold">8</span>
                   </span>
-                  <span><strong>SDG 8 (Ekonomi):</strong> Memberdayakan secara ekonomi lewat kewirausahaan sosial dan peluang kerja inklusif.</span>
+                  <span><strong>Pertumbuhan Ekonomi (Economic Growth &mdash; SDG 8):</strong> Memberdayakan penyandang disabilitas secara ekonomi melalui kewirausahaan sosial dan peluang kerja yang inklusif.</span>
                 </li>
               </ul>
             </div>
             </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-surface">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+          <div className="text-center max-w-xl mx-auto mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+              Struktur Organisasi
+            </h2>
+            <p className="text-foreground/60 mt-3">
+              Susunan pengurus Yayasan Omah Gembira.
+            </p>
+          </div>
+          </AnimatedSection>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {[
+              { role: 'Penasihat', members: ['Ely Estiningtyas'], color: 'bg-green-bg border-green/20', textColor: 'text-green', index: 1 },
+              { role: 'Pembina', members: ['Titing Rara W'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', index: 2 },
+              { role: 'Ketua', members: ['Riza Agung P'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', index: 3 },
+              { role: 'Sekretaris', members: ['Hanna Haidaroh'], color: 'bg-rose-bg border-rose/20', textColor: 'text-rose-dark', index: 4 },
+              { role: 'Bendahara', members: ['Cehra'], color: 'bg-green-bg border-green/20', textColor: 'text-green', index: 5 },
+              { role: 'PSDM', members: ['Widya (CO)', 'Putri', 'Jeje'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', index: 6 },
+              { role: 'PUSMEDINFO', members: ['New (CO)'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', index: 7 },
+              { role: 'Humas', members: ['New (CO)', 'Nani'], color: 'bg-rose-bg border-rose/20', textColor: 'text-rose-dark', index: 8 },
+              { role: 'Disability Care', members: ['Marwa (CO)', 'Nilam', 'Naila', 'Tata'], color: 'bg-green-bg border-green/20', textColor: 'text-green', index: 9 },
+              { role: 'EDU.INC', members: ['Abdul (CO)', 'Himmah', 'Aje'], color: 'bg-blue-bg border-blue/20', textColor: 'text-blue', index: 10 },
+              { role: 'Kriya Gembira', members: ['Chelli (CO)', 'Muthi'], color: 'bg-gold-bg border-gold/20', textColor: 'text-gold-dark', index: 11 },
+            ].map((item) => (
+              <AnimatedSection key={item.role} delay={item.index * 50}>
+                <div className={`p-5 rounded-xl border ${item.color} h-full`}>
+                  <h4 className={`text-sm font-bold mb-2 ${item.textColor}`}>{item.role}</h4>
+                  <ul className="space-y-0.5">
+                    {item.members.map((m) => (
+                      <li key={m} className="text-sm text-foreground/70">{m}</li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -223,9 +263,9 @@ export default function TentangPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { value: '11', label: 'Forum Keluarga Difabel & Paguyuban Orang Tua', color: 'text-green' },
-              { value: '137', label: 'Peserta Binaan', color: 'text-blue' },
-              { value: '274', label: 'Keluarga Difabel', color: 'text-gold-dark' },
+              { value: '10', label: 'Paguyuban Orang Tua', color: 'text-green' },
+              { value: '350+', label: 'Penyandang Disabilitas', color: 'text-blue' },
+              { value: '5', label: 'Kecamatan Jangkauan', color: 'text-gold-dark' },
             ].map((item) => (
               <div key={item.label} className="p-8 rounded-2xl bg-surface text-center">
                 <div className={`text-4xl font-bold ${item.color} mb-2`}>{item.value}</div>
@@ -234,9 +274,10 @@ export default function TentangPage() {
             ))}
           </div>
           <p className="text-center text-foreground/60 text-sm mt-8 max-w-2xl mx-auto">
-            Jangkauan meliputi Kecamatan Sukun, Kedungkandang, Dau, Singosari, Tajinan,
-            Tumpang, Pakis, dan wilayah lainnya di Malang Raya, bekerja sama dengan SLB
-            dan paguyuban orang tua disabilitas.
+            Jangkauan meliputi lima kecamatan di Kota dan Kabupaten Malang, bermitra dengan
+            10 paguyuban orang tua penyandang disabilitas dengan basis sekitar 350 penyandang
+            disabilitas, serta bekerja sama dengan SLB dan pendamping penyandang disabilitas
+            Kementerian Sosial Malang.
           </p>
         </div>
       </section>

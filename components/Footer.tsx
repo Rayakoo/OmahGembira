@@ -28,9 +28,11 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white text-sm font-bold">
-                OG
-              </div>
+              <img
+                src="/logo.jpg"
+                alt="Omah Gembira"
+                className="w-10 h-10 rounded-full object-cover"
+              />
               <span className="font-semibold text-lg text-white">Omah Gembira</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-sm">

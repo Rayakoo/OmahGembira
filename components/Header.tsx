@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
 
 const navLinks = [
   { label: 'Beranda', href: '/' },
   { label: 'Tentang', href: '/tentang' },
   { label: 'Kegiatan', href: '/kegiatan' },
+  { label: 'Materi', href: '/materi' },
   { label: 'Galeri', href: '/galeri' },
   { label: 'Video', href: '/video' },
   { label: 'Kontak', href: '/kontak' },
@@ -16,15 +18,20 @@ const navLinks = [
 export default function Header() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const { user } = useAuth()
+
+  const isAdmin = user?.user_metadata?.role === 'admin'
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-green/10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-full bg-charcoal flex items-center justify-center text-white text-sm font-bold">
-              OG
-            </div>
+            <img
+              src="/logo.jpg"
+              alt="Omah Gembira"
+              className="w-10 h-10 rounded-full object-cover"
+            />
             <span className="font-semibold text-lg text-foreground hidden sm:block">
               Omah Gembira
             </span>
@@ -53,6 +60,14 @@ export default function Header() {
             >
               Hubungi Kami
             </Link>
+            {isAdmin && (
+              <Link
+                href="/admin"
+                className="ml-1 px-4 py-2 rounded-full bg-green text-charcoal text-sm font-semibold hover:opacity-90 transition-all"
+              >
+                Admin
+              </Link>
+            )}
           </nav>
 
           <button
@@ -98,6 +113,15 @@ export default function Header() {
             >
               Hubungi Kami
             </Link>
+            {isAdmin && (
+              <Link
+                href="/admin"
+                onClick={() => setOpen(false)}
+                className="block px-4 py-2 rounded-full bg-green text-charcoal text-sm font-semibold hover:opacity-90 text-center"
+              >
+                Admin
+              </Link>
+            )}
           </div>
         </div>
       )}
