@@ -2,21 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getActivities, type Activity } from "@/services/activities";
-
-function getDriveThumbnail(url: string): string {
-  const match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
-  if (match) return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w800`;
-  return url;
-}
-
-function getGoogleDriveImageUrl(url: string): string {
-  const match = url.match(/\/d\/([^/]+)/);
-  if (match) return `https://lh3.googleusercontent.com/d/${match[1]}`;
-  return url;
-}
+import { toDirectImageUrl } from "@/lib/toDirectImageUrl";
 
 const cardSchemes = [
   {
@@ -62,7 +50,6 @@ const regulations = [
 export default function KegiatanPage() {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<Activity | null>(null);
 
   useEffect(() => {
     getActivities()
@@ -70,15 +57,6 @@ export default function KegiatanPage() {
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
-
-  useEffect(() => {
-    if (selected) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [selected]);
 
   return (
     <>
@@ -141,24 +119,29 @@ export default function KegiatanPage() {
                                   </li>
                                 ))}
                               </ul>
-                              <button
-                                onClick={() => setSelected(activity)}
-                                className={`mt-3 text-xs font-semibold ${scheme.text} hover:underline`}
+                              <Link
+                                href={`/kegiatan/${activity.id}`}
+                                className={`mt-3 inline-flex items-center gap-1 text-xs font-semibold ${scheme.text} hover:underline`}
                               >
-                                Lihat selengkapnya &rarr;
-                              </button>
+                                Lihat selengkapnya
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </Link>
                             </div>
                           )}
                         </div>
 
                         <div className={`bg-charcoal min-h-[280px] relative ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
                           {thumbnail ? (
-                            <img
-                              src={getDriveThumbnail(thumbnail)}
-                              alt={activity.title}
-                              className="w-full h-full object-cover absolute inset-0"
-                              loading="lazy"
-                            />
+                            <Link href={`/kegiatan/${activity.id}`}>
+                              <img
+                                src={toDirectImageUrl(thumbnail)}
+                                alt={activity.title}
+                                className="w-full h-full object-cover absolute inset-0"
+                                loading="lazy"
+                              />
+                            </Link>
                           ) : (
                             <div className="w-full h-full flex items-center justify-center absolute inset-0">
                               <div className="text-center p-8">
@@ -176,118 +159,6 @@ export default function KegiatanPage() {
           )}
         </div>
       </section>
-
-      {selected && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setSelected(null)}
-          />
-          <div className="relative min-h-full flex items-center justify-center p-4">
-            <div className="relative bg-white rounded-2xl w-full max-w-3xl shadow-2xl animate-fade-in-up my-8">
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
-              >
-                <X className="w-5 h-5 text-foreground/60" />
-              </button>
-
-              <div className="p-8">
-                <h2 className="text-2xl font-bold text-foreground mb-3">{selected.title}</h2>
-                <p className="text-foreground/60 leading-relaxed mb-8">{selected.description}</p>
-
-                {Array.isArray(selected.tujuan) && selected.tujuan.length > 0 && (
-                  <div className="mb-8">
-                    <h3 className="text-sm font-bold text-foreground/40 uppercase tracking-wider mb-4">Tujuan</h3>
-                    <div className="space-y-2">
-                      {selected.tujuan.map((item) => (
-                        <div key={item} className="flex items-start gap-3 p-3 rounded-xl bg-green-bg">
-                          <div className="w-5 h-5 rounded-full bg-green flex items-center justify-center shrink-0 mt-0.5">
-                            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-sm text-foreground/70">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {Array.isArray(selected.kegiatan) && selected.kegiatan.length > 0 && (
-                  <div className="mb-8">
-                    <h3 className="text-sm font-bold text-foreground/40 uppercase tracking-wider mb-4">Kegiatan</h3>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {selected.kegiatan.map((item) => (
-                        <div key={item.nama} className="p-3 rounded-xl bg-blue-bg flex items-center gap-3">
-                          {item.gambar && (
-                            <img
-                              src={getGoogleDriveImageUrl(item.gambar)}
-                              alt={item.nama}
-                              className="w-10 h-10 rounded-lg object-cover shrink-0"
-                              loading="lazy"
-                            />
-                          )}
-                          <span className="text-sm font-medium text-foreground/70">{item.nama}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {Array.isArray(selected.mitra) && selected.mitra.length > 0 && (
-                  <div className="mb-8">
-                    <h3 className="text-sm font-bold text-foreground/40 uppercase tracking-wider mb-4">Kolaborasi & Mitra</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {selected.mitra.map((item) => (
-                        <div key={item.nama} className="flex items-center gap-3 p-3 rounded-xl bg-gold-bg">
-                          {item.gambar && (
-                            <img
-                              src={getGoogleDriveImageUrl(item.gambar)}
-                              alt={item.nama}
-                              className="w-10 h-10 rounded-lg object-cover shrink-0"
-                              loading="lazy"
-                            />
-                          )}
-                          <span className="text-sm font-medium text-foreground/70">{item.nama}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {Array.isArray(selected.dokumentasi) && selected.dokumentasi.length > 0 && (
-                  <div>
-                    <h3 className="text-sm font-bold text-foreground/40 uppercase tracking-wider mb-4">Dokumentasi</h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                      {selected.dokumentasi.map((d, di) => (
-                        <div
-                          key={di}
-                          className={`aspect-video rounded-xl overflow-hidden bg-charcoal relative ${
-                            d.is_thumbnail ? "ring-2 ring-gold-dark" : ""
-                          }`}
-                        >
-                          <img
-                            src={getGoogleDriveImageUrl(d.url)}
-                            alt={`${selected.title} ${di + 1}`}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                          {d.is_thumbnail && (
-                            <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-gold-dark text-white text-xs font-medium">
-                              Thumbnail
-                            </span>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       <section className="py-16 bg-gold-bg">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

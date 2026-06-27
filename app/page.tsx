@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import CountUp from '@/components/CountUp'
 import Marquee from '@/components/Marquee'
 import HomepagePrograms from '@/components/HomepagePrograms'
+import HomeHeroGallery from '@/components/HomeHeroGallery'
 
 const highlights = [
   {
@@ -152,20 +153,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <div className="aspect-[4/3] rounded-2xl bg-charcoal overflow-hidden flex flex-col shadow-2xl card-hover">
-                <div className="flex-1 grid grid-cols-5 gap-0">
-                  {['bg-green', 'bg-blue', 'bg-surface', 'bg-gold', 'bg-rose'].map((c, i) => (
-                    <div key={i} className={`${c} flag-stripe`} />
-                  ))}
-                </div>
-                <div className="bg-surface/10 backdrop-blur-sm text-center py-4">
-                  <p className="text-white/70 text-sm font-medium">Disability Pride Flag</p>
-                  <p className="text-white/40 text-xs mt-0.5">Ann Magill</p>
-                </div>
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl bg-green/10 -z-10 animate-float" />
-            </div>
+            <HomeHeroGallery />
           </div>
         </div>
       </section>

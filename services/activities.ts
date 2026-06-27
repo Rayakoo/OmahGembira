@@ -54,6 +54,18 @@ export async function getActivities(includeUnpublished = false) {
   return supabaseGet<Activity[]>("/rest/v1/activities?select=*&is_published=eq.true&order=created_at.asc");
 }
 
+export async function getActivityById(id: number) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !anonKey) throw new Error("Supabase env vars not set");
+  const res = await fetch(`${url}/rest/v1/activities?id=eq.${id}&select=*`, {
+    headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` },
+  });
+  if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+  const data: Activity[] = await res.json();
+  return data[0] || null;
+}
+
 export async function createActivity(input: {
   title: string;
   description?: string;
