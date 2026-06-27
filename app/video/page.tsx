@@ -40,7 +40,7 @@ export default function VideoPage() {
               Video
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground leading-tight">
-              Video Dokumentasi
+              Video Dokumentasi dan Edukasi
             </h1>
             <p className="text-lg text-foreground/60 mt-4 leading-relaxed">
               Saksikan keseruan dan kebersamaan dalam setiap kegiatan Omah Gembira.

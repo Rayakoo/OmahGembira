@@ -14,7 +14,6 @@ function getDriveThumbnail(url: string): string {
 const colorScheme = [
   { bg: "bg-green-bg", border: "border-green/20", text: "text-green" },
   { bg: "bg-blue-bg", border: "border-blue/20", text: "text-blue" },
-  { bg: "bg-gold-bg", border: "border-gold/20", text: "text-gold-dark" },
   { bg: "bg-rose-bg", border: "border-rose/20", text: "text-rose-dark" },
 ];
 
